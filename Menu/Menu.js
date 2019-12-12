@@ -1,4 +1,4 @@
-/* This is the data we will be using, study it but don't change anything, yet. */
+/* /* This is the data we will be using, study it but don't change anything, yet. */
 
 let menuItems = [
   'Students',
@@ -33,7 +33,7 @@ let menuItems = [
   Step 6: add the menu component to the DOM.
   
 */
-function createMenu(arr){
+/* function createMenu(arr){
 
   const menu = document.createElement('div');
   const ul = document.createElement('ul');
@@ -63,3 +63,4 @@ const menu = document.querySelector('menu');
 
 arr.appendChild(createMenu(arr));
 
+ */ 

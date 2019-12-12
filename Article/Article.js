@@ -127,12 +127,6 @@ function createArticle(title, date, p1, p2, p3) {
   const articleThirdParagraph = document.createElement('p');
   const expandSpan = document.createElement('span');
 
-  // set class names
-
-  article.classList.add('article');
-  articleDate.classList.add('date');
-  expandSpan.classList.add('expandButton');
-
   // setup structure of the elements
 
   article.appendChild(articleTitle);
@@ -142,6 +136,13 @@ function createArticle(title, date, p1, p2, p3) {
   article.appendChild(articleThirdParagraph);
   article.appendChild(expandSpan);
 
+  // set class names
+
+  article.classList.add('article');
+  articleDate.classList.add('date');
+  expandSpan.classList.add('expandButton');
+
+
   // set text content
 
   articleTitle.textContent = title;
@@ -150,21 +151,23 @@ function createArticle(title, date, p1, p2, p3) {
   articleFirstParagraph.textContent = p1;
   articleSecondParagraph.textContent = p2;
   articleThirdParagraph.textContent = p3;
-  expandSpan.textContent = 'Click here to open';
+  expandSpan.textContent = 'Expand';
 
 
-  expandSpan.addEventListener('click', () => {
-    article.classList.toggle('article-open');
-  });
-
-
-  return article;
+expandSpan.addEventListener('click', (e) => {
+		article.classList.toggle('article-open');
+		if (expandSpan.innerText != 'Close') {
+			expandSpan.innerText = 'Close';
+		} else {
+			expandSpan.innerText = 'Expand';
+		}
+	});
+	return article;
 
 }
 
 
-data.forEach(d => {
-  articles.appendChild(createArticle(d.title, d.date, d.firstParagraph, d.secondParagraph, d.thirdParagraph, d.expandSpan));
+data.map(d => {
+  articles.appendChild(
+    createArticle(d.title, d.date, d.firstParagraph, d.secondParagraph, d.thirdParagraph, d.expandSpan));
 });
-
-createArticle(data[0].title, data[0].date, data[0].firstParagraph, data[0].secondParagraph, data[0].thirdParagraph);
