@@ -19,9 +19,9 @@ let menuItems = [
     </ul>
   </div>
 
-  The function takes an array as its only argument.
+  The function takes an arrayOfItemsay as its only argument.
 
-  Step 2: Inside this function, iterate over the array creating a list item <li> element for each item in the array. 
+  Step 2: Inside this function, iterate over the arrayOfItemsay creating a list item <li> element for each item in the arrayOfItemsay. 
   Add those items to the <ul>
 
   Step 3: Using a DOM selector, select the menu button (the element with a class of 'menu-button') currently on the DOM.
@@ -33,34 +33,45 @@ let menuItems = [
   Step 6: add the menu component to the DOM.
   
 */
-/* function createMenu(arr){
 
+const header = document.querySelector('.header');
+const menuButton = document.querySelector('.menu-button');
+
+
+function createMenu(arrayOfItems){
   const menu = document.createElement('div');
+
+  // Create unordered list
   const ul = document.createElement('ul');
+  menu.appendChild(ul);
+  
+  // create list items
+  arrayOfItems.forEach( el => {
+    const li = document.createElement('li');
+    li.innerText = el;
+    ul.appendChild(li);
+   
+    try {
+      li.style.cursor = 'pointer';
+      // the following two lines won't work... why??
+      li.onmouseover.style.backgroundColor = 'green';
+      li.onclick.style.color = 'orange';
+    } catch (error) {
+      console.log(error);
+    }
 
-  menu.classList.add('menu');
 
-
-
-  arr.forEach(item => {
-    ul.appendChild(document.createElement('li').classList.add('.menu ul li'));
-    
   });
 
-  const menuButton = document.querySelector('.menu-button');
-  menuButton.addEventListener('click', () => {
-    menu.classList.toggle('.menu--open');
 
-
+  //add styles 
+  menu.classList.add('menu');
+  menuButton.addEventListener('click', e => {
+    menu.classList.toggle('menu--open');
   });
 
   return menu;
-
-
 }
 
-const menu = document.querySelector('menu');
 
-arr.appendChild(createMenu(arr));
-
- */ 
+header.appendChild(createMenu(menuItems));
