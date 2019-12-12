@@ -75,3 +75,4 @@ function createMenu(arrayOfItems){
 
 
 header.appendChild(createMenu(menuItems));
+
