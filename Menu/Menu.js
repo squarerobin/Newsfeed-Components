@@ -38,19 +38,19 @@ const header = document.querySelector('.header');
 const menuButton = document.querySelector('.menu-button');
 
 
-function createMenu(arrayOfItems){
+function createMenu(arrayOfItems) {
   const menu = document.createElement('div');
 
   // Create unordered list
   const ul = document.createElement('ul');
   menu.appendChild(ul);
-  
+
   // create list items
-  arrayOfItems.forEach( el => {
+  arrayOfItems.forEach(el => {
     const li = document.createElement('li');
     li.innerText = el;
     ul.appendChild(li);
-   
+
     try {
       li.style.cursor = 'pointer';
       // the following two lines won't work... why??
@@ -67,7 +67,19 @@ function createMenu(arrayOfItems){
   //add styles 
   menu.classList.add('menu');
   menuButton.addEventListener('click', e => {
-    menu.classList.toggle('menu--open');
+    if (menu.classList.toggle('menu--close')) {
+      menu.classList.toggle('menu--open');
+      menu.style.width = '350px';
+    } else {
+
+     // menu.classList.toggle('menu--open');
+       menu.classList.toggle('menu-close');
+       menu.style.width = '0';
+       ul.style.display = 'none';
+       
+       
+
+    }
   });
 
   return menu;
@@ -75,4 +87,3 @@ function createMenu(arrayOfItems){
 
 
 header.appendChild(createMenu(menuItems));
-
