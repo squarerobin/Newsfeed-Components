@@ -1,7 +1,6 @@
 /* This is the data we will be using to create our article components */
 /* Look over this data, then proceed to line 91*/
-const data = [
-  {
+const data = [{
     title: 'Lambda School Students: "We\'re the best!"',
     date: 'Nov 5th, 2018',
     firstParagraph: `Lucas ipsum dolor sit amet ben twi'lek padmé darth darth darth moff hutt organa twi'lek. Ben amidala secura skywalker lando
@@ -85,30 +84,129 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
-  }
+  },
+  {
+		title: 'General election 2019: Voters head to polls across the UK',
+		date: 'December 10, 2019',
+		firstParagraph:
+			'The contest, the first to be held in December in nearly 100 years, follows those in 2015 and 2017.',
+		secondParagraph:
+			'Polling stations in 650 constituencies across England, Wales, Scotland and Northern Ireland opened at 07:00 GMT.',
+		thirdParagraph:
+			'A total of 650 MPs will be chosen under the first-past-the-post system used for general elections, in which the candidate who secures the most votes in each individual constituency is elected. ',
+	},
+	{
+		title: 'General election 2019: How the BBC calculates and reports results',
+		date: 'December 10, 2019',
+		firstParagraph:
+			'By winning more seats in the House of Commons than all the other parties put together. If a party does that, it has what is known as a majority. There are 650 seats available, which means 326 seats are needed to win an overall majority.',
+		secondParagraph:
+			'However, an effective majority could be smaller as Sinn Fein, which won seven seats in Northern Ireland in 2017, traditionally refuses to swear allegiance to the Queen and, as a consequence, is not entitled to vote. ',
+		thirdParagraph:
+			"So in 2017, 650 minus Sinn Fein's seven would be 643 voting MPs, and 322 would have been enough to command a majority. But obviously that figure changes depending on how many non-voting MPs there are.",
+	},
+	{
+		title: "Trump says US and China 'very close' to trade deal",
+		date: 'December 12, 2019',
+		firstParagraph:
+			'"They want it and so do we!" the US President wrote on Twitter.',
+		secondParagraph:
+			'The statement comes just days before the US is due to impose another round of tariffs on Chinese goods. ',
+		thirdParagraph:
+			'The two sides are negotiating to avoid those duties, looking at a deal that contemplates higher Chinese purchases of US agricultural products and a roll back of existing tariffs.',
+	}
 ];
 
-/* Step 1: Create a function that creates a component. You will want your component to look like the template below: 
-  
-  <div class="article">
+// Step 1: Create a function that creates a component. You will want your component to look like the template below: 
+
+/*   <div class="article">
     <h2>{title of the article}</h2>
     <p class="date">{date of the article}</p>
 
     {three separate paragraph elements}
 
     <span class='expandButton'></span>
-  </div>
+  </div> */
 
-  Hint: You will need to use createElement more than once here!
+//Hint: You will need to use createElement more than once here!
 
-  Your function should take either an object as it's one argument, or 5 separate arguments mapping to each piece of the data object above.
+// Your function should take either an object as it's one argument, or 5 separate arguments mapping to each piece of the data object above.
 
-  Step 2: Add an event listener to the expandButton span. This event listener should toggle the class 'article-open' on the 'article' div.
 
-  Step 3: return the entire component.
+// Step 2: Add an event listener to the expandButton span. This event listener should toggle the class 'article-open' on the 'article' div.
 
-  Step 4: Map over the data, creating a component for each oject and add each component to the DOM as children of the 'articles' div.
+// Step 3: return the entire component.
 
-  Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
+// Step 4: Map over the data, creating a component for each object and add each component to the DOM as children of the 'articles' div.
 
-*/
+// Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
+
+
+  const articles = document.querySelector('.articles');
+
+
+function createArticle(title, date, para1, para2, para3) {
+
+  // define new elements
+  const article = document.createElement('div');
+  const articleTitle = document.createElement('h2');
+  const articleDate = document.createElement('p');
+  const articleFirstParagraph = document.createElement('p');
+  const articleSecondParagraph = document.createElement('p');
+  const articleThirdParagraph = document.createElement('p');
+  const expandSpan = document.createElement('span');
+
+  // set class names
+  articles.classList.add('articles');
+  article.classList.add('article');
+  articleTitle.classList.add('h2');
+  articleDate.classList.add('date');
+  expandSpan.classList.add('expandButton');
+
+  // setup structure of the elements
+
+  article.appendChild(articleTitle);
+  article.appendChild(articleDate);
+  article.appendChild(articleFirstParagraph);
+  article.appendChild(articleSecondParagraph);
+  article.appendChild(articleThirdParagraph);
+  article.appendChild(expandSpan);
+
+  
+
+
+  // set text content
+
+  articleTitle.textContent = title;
+  articleDate.textContent = date;
+
+  articleFirstParagraph.textContent = para1;
+  articleSecondParagraph.textContent = para2;
+  articleThirdParagraph.textContent = para3;
+  expandSpan.innerText = 'Expand';
+
+
+expandSpan.addEventListener('click', (e) => {
+		e.target.parentElement.classList.toggle('article-open');
+		if (expandSpan.innerText != 'Close') {
+      e.target.parentElement.classList.toggle('close');
+
+			expandSpan.innerText = 'Close';
+		} else {
+			expandSpan.innerText = 'Expand';
+		}
+  });
+  
+	return article;
+
+}
+
+
+ data.map((a) => {
+     return articles.appendChild(createArticle(a.title,a.date,a.firstParagraph, a.secondParagraph, a.thirdParagraph))
+ });
+
+
+
+ 
+

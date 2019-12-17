@@ -3,7 +3,6 @@
   left: 20px;
   cursor: pointer;
 }
-
 .menu {
   display: none;
   position: fixed;
@@ -18,54 +17,39 @@
   border-bottom: none;
   z-index: 2;
   /* This set the layer level of the element, it has precendence over initial level of 1*/
-
 }
-
 .menu ul li {
   list-style-type: none;
   font-size: 32px;
   padding: 30px 30px;
   text-align: center;
 }
-
 .menu--open {
   display: block;
-    // animation - slide menu to the right 
   animation-name: menuAnimationIn;
   animation-duration: 3s;
   animation-iteration-count: 1;
   animation-direction: normal;
-  
 }
-
-//stretch animation
 @keyframes menuAnimationIn {
   from {
     width: 0;
   }
-
   to {
     width: 350px;
   }
 }
-
 @keyframes menuAnimationOut {
   from {
     width: 350px;
   }
-
   to {
     width: 0;
-    
-    
   }
 }
-
-.menu-close{
-  
+.menu-close {
   animation-name: menuAnimationOut;
   animation-duration: 3s;
   animation-iteration-count: 1;
   animation-direction: normal;
-  
 }
